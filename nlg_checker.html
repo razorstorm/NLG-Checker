@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>NLG?</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script src="https://raw.github.com/padolsey/jQuery-Plugins/master/cross-domain-ajax/jquery.xdomainajax.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var monthList =['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+		$.get("http://www.mangafox.com/manga/liar_game/",[],function(data)
+		{
+			var latestDate = $('#chapters li',$(data['responseText'])).first().find('.date').text();
+			console.log(latestDate);
+			var today= new Date();
+			console.log(today.getDate());
+			console.log(monthList[today.getMonth()]);
+			console.log(today.getFullYear());
+			var dateString = monthList[today.getMonth()]+" "+today.getDate+", "+today.getFullYear();
+			
+			if (latestDate == dateString)
+			{
+				$("#answer").append("NLG! <a href='http://www.mangafox.com/manga/liar_game/'>http://www.mangafox.com/manga/liar_game/</a> <a href='http://www.mangafox.com/manga/liar_game/'>http://www.mangafox.com/manga/liar_game/</a><a href='http://www.mangafox.com/manga/liar_game/'>http://www.mangafox.com/manga/liar_game/</a><a href='http://www.mangafox.com/manga/liar_game/'>http://www.mangafox.com/manga/liar_game/</a>!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			}
+			else
+			{
+				$("#answer").append("OLG :( Latest was on "+latestDate);
+			}
+		});
+	</script>
+</head>
+
+<body>
+<div id="question">
+	Q: IS THERE N MOTHERFUCKING LG?
+</div>
+<div id="answer">
+	A: 
+</div>
+</body>
+</html>
